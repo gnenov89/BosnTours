@@ -1,0 +1,19 @@
+{
+  "name": "bostontours",
+  "version": "1.0.0",
+  "description": "React-native ios App(Work in Progress)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gnenov89/BostonTours.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gnenov89/BostonTours/issues"
+  },
+  "homepage": "https://github.com/gnenov89/BostonTours#readme"
+}
