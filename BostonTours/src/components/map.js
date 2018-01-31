@@ -99,13 +99,28 @@ export default class MapBoston extends Component{
 
                       <Polyline
 		coordinates={[
+			<Polyline
+		coordinates={[
 			{ latitude: 42.355490, longitude: -71.063815 },
-			{ latitude: 37.7896386, longitude: -122.421646 },
-			{ latitude: 37.7665248, longitude: -122.4161628 },
-			{ latitude: 37.7734153, longitude: -122.4577787 },
-			{ latitude: 37.7948605, longitude: -122.4596065 },
-			{ latitude: 37.8025259, longitude: -122.4351431 }
-		]}
+			{ latitude: 42.358750, longitude: -71.063429 },
+			{ latitude: 42.3575, longitude: -71.0635 },
+			{ latitude: 42.357081, longitude: -71.061726},
+			{ latitude:42.3379, longitude:-71.1011},
+			{ latitude: 42.3581, longitude: -71.0603},
+      { latitude:42.3379, longitude:-71.1011},
+      {latitude:42.3581, longitude:-71.0592},
+      {latitude:42.3570, longitude:-71.0584},
+      {latitude:42.3575975, longitude:-71.0583843},
+      {latitude:42.3587, longitude:-71.0575},
+      {latitude:42.3588, longitude:-71.0572},
+      {latitude:42.3602, longitude:-71.0548},
+      {latitude:42.3637, longitude:-71.0537},
+      {latitude:42.3656, longitude:-71.0533},
+      {latitude:42.3663, longitude:-71.0544},
+      {latitude:42.3673, longitude:-71.0560},
+      {latitude:42.3740, longitude:-71.0554},
+      {latitude:42.3764, longitude:-71.0608}
+      
 		strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
 		strokeColors={[
 			'#7F0000',
