@@ -1,79 +1,178 @@
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Dimensions
-} from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, View, Dimensions, Text } from "react-native";
+import MapView, { Polyline, PROVIDER_GOOGLE } from "react-native-maps";
+import { Title, Card } from "@shoutem/ui";
+import MapViewDirections from "react-native-maps-directions";
+// import polyline from "./polyline.js";
 
-import MapView from 'react-native-maps';
-import Polyline from '@mapbox/polyline';
+// This is Boston Location coordinates
+let { height, width } = Dimensions.get("window");
+const ASPECT_RATIO = height / width;
+const LATITUDE = 42.3601;
+const LONGITUDE = -71.0589;
+const LATITUDE_DELTA = 0.005;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-export default class RnDirectionsApp extends Component {
-  constructor(props) {
-    super(props)
+
+
+// MapBoston Component
+export default class MapBoston extends Component {
+  constructor() {
+    super();
     this.state = {
-      coords: []
-    }
+      region: {
+        latitude: LATITUDE,
+        longitude: LONGITUDE,
+        latitudeDelta: LATITUDE_DELTA,
+        longitudeDelta: LONGITUDE_DELTA
+      },
+
+      // Markers to be added on the map
+      markers: [
+        {
+          latlng: { latitude: 42.35549, longitude: -71.063815 },
+          title: "Boston Common Visitors Center",
+          description: "Stop A:Info + free restrooms"
+        },
+        {
+          latlng: { latitude: 42.35875, longitude: -71.063429 },
+          title: "Massachusetts State House",
+          description: "Stop B:State house mass"
+        },
+        {
+          latlng: { latitude: 42.3575, longitude: -71.0635 },
+          title: "Robert Gould Shaw Memorial",
+          description: "Stop C:54th regiment"
+        },
+        {
+          latlng: { latitude: 42.357081, longitude: -71.061726 },
+          title: "Park Street Church",
+          description: "Stop D:First Church in Boston"
+        },
+        {
+          latlng: { latitude: 42.3575, longitude: -71.0617 },
+          title: "Granary Burial Ground",
+          description: "Stop E:Bostons oldest cemetery"
+        },
+        {
+          latlng: { latitude: 42.3581, longitude: -71.0603 },
+          title: "King’s Chapel",
+          description: "Stop F:King’s Chapel"
+        },
+        {
+          latlng: { latitude: 42.3581, longitude: -71.0593 },
+          title: "Benjamin Franklin Statue",
+          description: "Stop G:The oldest scholl in the US"
+        },
+        {
+          latlng: { latitude: 42.3581, longitude: -71.0592 },
+          title: "Old City Hall",
+          description: "Stop H:Old City Hall"
+        },
+        {
+          latlng: { latitude: 42.357, longitude: -71.0584 },
+          title: "Old South Meeting House",
+          description: "Stop I: Congregational church"
+        },
+        {
+          latlng: { latitude: 42.3575975, longitude: -71.0583843 },
+          title: "The Old Corner Bookstore",
+          description: "Stop J: Oldes brick structure"
+        },
+        {
+          latlng: { latitude: 42.3587, longitude: -71.0575 },
+          title: "The Old State house",
+          description: "Stop K:Center of civic life in old Boston"
+        },
+        {
+          latlng: { latitude: 42.3588, longitude: -71.0572 },
+          title: "Boston Massacre",
+          description: "Stop L:Monument of the 5 victims killes on March 5,1770"
+        },
+        {
+          latlng: { latitude: 42.3602, longitude: -71.0548 },
+          title: "Faneuil Hall",
+          description: 'Stop M :"The Cradle of Liberty"'
+        },
+        {
+          latlng: { latitude: 42.3637, longitude: -71.0537 },
+          title: " Paul Revere House",
+          description: 'Stop N :"Paul Revere House museum"'
+        },
+        {
+          latlng: { latitude: 42.3656, longitude: -71.0533 },
+          title: " Paul Revere Statue",
+          description: 'Stop O :"Heart of the North end"'
+        },
+        {
+          latlng: { latitude: 42.3663, longitude: -71.0544 },
+          title: "Old North Church",
+          description: 'Stop P :"The Oldest church in Boston"'
+        },
+        {
+          latlng: { latitude: 42.3673, longitude: -71.056 },
+          title: "Copp’s Hill Burial Ground",
+          description: 'Stop Q:" Copp’s Hill Burial Ground"'
+        },
+        {
+          latlng: { latitude: 42.374, longitude: -71.0554 },
+          title: "USS Constitution",
+          description: 'Stop R :"Old Ironsides"'
+        },
+        {
+          latlng: { latitude: 42.3764, longitude: -71.0608 },
+          title: "Bunker Hill Monument",
+          description: "Stop S:Bunker Hill Museum"
+        }
+      ]
+    };
   }
 
-  componentDidMount() {
-    // find your origin and destination point coordinates and pass it to our method.
-    // I am using Bursa,TR -> Istanbul,TR for this example
-    this.getDirections("42.35549, -71.063815", "42.3764, -71.0608")
+  render() {
+    return (
+      <MapView.Animated
+
+        provider={PROVIDER_GOOGLE}
+        showsUserLocation={true}
+        style={Styles.container}
+        region={this.state.region}
+      >
+        <Title>WHAT ARE YOU LOOKING FOR?</Title>
+        {this.state.markers.map((marker, i) => (
+          <MapView.Marker
+            key={i}
+            coordinate={marker.latlng}
+            title={marker.title}
+            description={marker.description}
+            color={"red"}
+          >
+
+          </MapView.Marker>
+        ))}
+        <Polyline
+          coordinates={[
+            { latitude: 42.35549, longitude: -71.063815 },
+            { latitude: 42.35875, longitude: -71.063429 }]}
+          strokeColor="red"
+          // fallback for when `strokeColors` is not supported by the map-provider
+          strokeColors={[
+            "#7F0000",
+            "#00000000", // no color, creates a "long" gradient between the previous and next coordinate
+
+          ]}
+          strokeWidth={10}
+          lineDashPhase={1}
+        />
+
+      </MapView.Animated>
+    );
   }
-
-  async getDirections(startLoc, destinationLoc) {
-    try {
-        let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${ startLoc }&destination=${ destinationLoc }`)
-        let respJson = await resp.json();
-        let points = Polyline.decode(respJson.routes[0].overview_polyline.points);
-        let coords = points.map((point, index) => {
-            return  {
-                latitude : point[0],
-                longitude : point[1]
-            }
-        })
-        this.setState({coords: coords})
-        return coords
-    } catch(error) {
-        alert(error)
-        return error
-    }
 }
 
-render() {
-return (
-  <View>
-    <MapView style={styles.map} initialRegion={{
-      
-      latitude:42.3601, 
-      longitude:-71.0589, 
-      latitudeDelta: 0.005,
-      longitudeDelta: 0.025, 
-    }}>
-
-    <MapView.Polyline 
-        coordinates={this.state.coords}
-        strokeWidth={2}
-        strokeColor="red"/>
-
-    </MapView>
-  </View>
-);
-}
-}
-
-const styles = StyleSheet.create({
-map: {
-position: 'absolute',
-top: 0,
-left: 0,
-right: 0,
-bottom: 0,
-
-},
+const Styles = StyleSheet.create({
+  container: {
+    height: "100%",
+    width: "100%"
+  }
 });
 
-AppRegistry.registerComponent('RnDirectionsApp', () => RnDirectionsApp);
