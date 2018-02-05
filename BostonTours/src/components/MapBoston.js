@@ -219,7 +219,11 @@ export default class MapBoston extends Component {
           strokeWidth={10}
           lineDashPhase={1}
         />
-
+        <MapView.Polyline
+    coordinates={this.state.polylineCoords}
+    strokeWidth={2}
+    strokeColor="red"
+   />
       </MapView.Animated>
     );
   }
