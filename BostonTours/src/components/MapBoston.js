@@ -172,7 +172,7 @@ export default class MapBoston extends Component {
       <MapView.Animated
 
         provider={PROVIDER_GOOGLE}
-        showsUserLocation={true}
+        
         style={Styles.container}
         region={this.state.region}
       >
