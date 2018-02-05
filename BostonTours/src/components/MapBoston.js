@@ -128,6 +128,26 @@ export default class MapBoston extends Component {
     };
   }
 
+  // Get the coordinates of the polyline via Google API tool 
+  getDirections(opts) {
+    var fromCoords = opts.fromCoords;
+    var toCoords = opts.toCoords;
+    var url = 'https://maps.googleapis.com/maps/api/directions/json?mode=walking&';
+        url += 'origin=' + fromCoords.latitude + ',' + fromCoords.longitude;
+        url += '&destination=' + toCoords.latitude + ',' + toCoords.longitude + '&key=' + constants.AIzaSyD5xGoQyLB5UBEYDvkuVspWgh1COPqXL7M;
+
+    return new Promise((resolve, reject) => {;
+      fetch(url)
+      .then((response) => {
+        return response.json();
+      }).then((json) => {
+        resolve(json);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+  }
+
   render() {
     return (
       <MapView.Animated
