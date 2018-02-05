@@ -147,6 +147,26 @@ export default class MapBoston extends Component {
     });
   }
 
+  _createRouteCoordinates(data) {
+    if (data.status !== 'OK') {
+      return [];
+    }
+
+    let points = data.routes[0].overview_polyline.points;
+    let steps = Polyline.decode(points);
+    let polylineCoords = [];
+
+    for (let i=0; i < steps.length; i++) {
+      let tempLocation = {
+        latitude : steps[i][0],
+        longitude : steps[i][1]
+      }
+      polylineCoords.push(tempLocation);
+    }
+
+    return polylineCoords;
+  }
+
   render() {
     return (
       <MapView.Animated
