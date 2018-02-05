@@ -189,22 +189,7 @@ export default class MapBoston extends Component {
           </MapView.Marker>
         ))}
 
-        <Polyline
-          coordinates={this.state.polylineCoords}
-          /* {[
-            { latitude: 42.35549, longitude: -71.063815 },
-            { latitude: 42.35875, longitude: -71.063429 }]} */
-
-          strokeColor="red"
-          // fallback for when `strokeColors` is not supported by the map-provider
-          strokeColors={[
-            "#7F0000",
-            "#00000000", // no color, creates a "long" gradient between the previous and next coordinate
-
-          ]}
-          strokeWidth={10}
-          lineDashPhase={1}
-        />
+        
         <Polyline
           coordinates={[
             { latitude: 42.35549, longitude: -71.063815 },
