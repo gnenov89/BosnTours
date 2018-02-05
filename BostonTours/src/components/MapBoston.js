@@ -140,8 +140,7 @@ export default class MapBoston extends Component {
       fetch(url)
       .then((response) => {
         return response.json();
-      }).then((json) => {
-        resolve(json);
+      }).
       }).catch((err) => {
         reject(err);
       });
